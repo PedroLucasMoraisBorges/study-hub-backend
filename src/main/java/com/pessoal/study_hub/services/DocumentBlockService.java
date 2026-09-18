@@ -20,6 +20,8 @@ import lombok.RequiredArgsConstructor;
 public class DocumentBlockService {
 
     private static final String TYPE = "doc";
+    private static final String CODE_TYPE = "code";
+    private static final String DEFAULT_CODE_LANGUAGE = "javascript";
 
     private final DocumentBlockRepository documentBlockRepository;
     private final FileService fileService;
@@ -51,6 +53,7 @@ public class DocumentBlockService {
                 .file(file)
                 .position(insertIndex)
                 .type(request.type())
+                .language(CODE_TYPE.equals(request.type()) ? DEFAULT_CODE_LANGUAGE : null)
                 .build();
 
         blocks.add(insertIndex, newBlock);
@@ -77,6 +80,9 @@ public class DocumentBlockService {
         }
         if (request.documentFileName() != null) {
             block.setDocumentFileName(request.documentFileName());
+        }
+        if (request.language() != null) {
+            block.setLanguage(request.language());
         }
         fileService.refreshMetadata(fileId);
         return DocumentBlockResponse.from(block);

@@ -10,7 +10,8 @@ public record DocumentBlockResponse(
         String linkUrl,
         String imageFile,
         String documentFile,
-        String documentFileName) {
+        String documentFileName,
+        String language) {
 
     public static DocumentBlockResponse from(DocumentBlock block) {
         return new DocumentBlockResponse(
@@ -21,6 +22,7 @@ public record DocumentBlockResponse(
                 block.getLinkUrl(),
                 block.getImageFile(),
                 block.getDocumentFile(),
-                block.getDocumentFileName());
+                block.getDocumentFileName(),
+                block.getLanguage());
     }
 }

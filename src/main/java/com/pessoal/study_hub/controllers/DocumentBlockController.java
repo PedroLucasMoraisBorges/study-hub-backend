@@ -42,7 +42,7 @@ public class DocumentBlockController {
 
     @PutMapping("/{blockId}")
     public DocumentBlockResponse update(@PathVariable Long fileId, @PathVariable Long blockId,
-            @RequestBody DocumentBlockUpdateRequest request) {
+            @Valid @RequestBody DocumentBlockUpdateRequest request) {
         return documentBlockService.update(fileId, blockId, request);
     }
 

@@ -52,4 +52,7 @@ public class DocumentBlock {
 
     @Column(length = 255)
     private String documentFileName;
+
+    @Column(length = 30)
+    private String language;
 }
